@@ -52,6 +52,10 @@
 #' column types that may be incorrectly guessed. Takes a \code{\link[readr]{cols}}
 #' specification. See example below and \code{\link[readr]{cols}} for formatting
 #' details. Defaults to \code{NULL}. Overwritten by \code{convert = TRUE}.
+#' @param responses_in_progress Logical. If \code{TRUE}, then the
+#' \code{\link[qualtRics]{fetch_survey}} function downloads responses in
+#' progress (incomplete interviews), which are not included in the standard
+#' data export.
 #' @param ... Optional arguments, such as a `fileEncoding` (see `fileEncoding`
 #' argument in \code{\link[qualtRics]{read_survey}}) to import your survey using
 #' a specific encoding.
@@ -107,6 +111,7 @@ fetch_survey <- function(surveyID,
                          time_zone = NULL,
                          breakout_sets = TRUE,
                          col_types = NULL,
+                         responses_in_progress = FALSE,
                          ...) {
 
   if (lifecycle::is_present(last_response)) {
@@ -131,7 +136,8 @@ fetch_survey <- function(surveyID,
     unanswer_recode_multi = unanswer_recode_multi,
     include_display_order = include_display_order,
     limit = limit,
-    breakout_sets = breakout_sets
+    breakout_sets = breakout_sets,
+    responses_in_progress = responses_in_progress
   )
 
   # See if survey already in tempdir
@@ -164,7 +170,8 @@ fetch_survey <- function(surveyID,
     limit = limit,
     time_zone = time_zone,
     include_questions = include_questions,
-    breakout_sets = breakout_sets
+    breakout_sets = breakout_sets,
+    responses_in_progress = responses_in_progress
   )
 
   # SEND POST REQUEST TO API ----

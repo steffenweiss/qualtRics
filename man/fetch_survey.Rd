@@ -23,6 +23,7 @@ fetch_survey(
   time_zone = NULL,
   breakout_sets = TRUE,
   col_types = NULL,
+  responses_in_progress = FALSE,
   ...
 )
 }
@@ -94,6 +95,11 @@ question is one column. Defaults to \code{TRUE}.}
 column types that may be incorrectly guessed. Takes a \code{\link[readr]{cols}}
 specification. See example below and \code{\link[readr]{cols}} for formatting
 details. Defaults to \code{NULL}. Overwritten by \code{convert = TRUE}.}
+
+\item{responses_in_progress}{Logical. If \code{TRUE}, then the
+\code{\link[qualtRics]{fetch_survey}} function downloads responses in
+progress (incomplete interviews), which are not included in the standard
+data export.}
 
 \item{...}{Optional arguments, such as a `fileEncoding` (see `fileEncoding`
 argument in \code{\link[qualtRics]{read_survey}}) to import your survey using
